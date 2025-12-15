@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imageboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Форма авторизации -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Авторизация</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="login">Логин:</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Войти</button>
+                <button type="button" id="registerBtn">Регистрация</button>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Форма регистрации -->
+    <div id="registerModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Регистрация</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regLogin">Логин:</label>
+                    <input type="text" id="regLogin" name="login" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Пароль:</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regNick">Ник:</label>
+                    <input type="text" id="regNick" name="nick" required>
+                </div>
+                <button type="submit">Зарегистрироваться</button>
+                <button type="button" id="backToLoginBtn">Назад к входу</button>
+            </form>
+            <div id="registerError" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div id="mainContent" style="display: none;">
+        <header>
+            <h1>Imageboard</h1>
+            <div class="user-info">
+                <span id="userNick"></span>
+                <button id="logoutBtn">Выйти</button>
+            </div>
+        </header>
+
+        <!-- Форма создания поста -->
+        <div class="post-form-container">
+            <form id="createPostForm" enctype="multipart/form-data">
+                <textarea id="postText" placeholder="Текст поста..." required></textarea>
+                <div class="file-upload">
+                    <label for="postFile">Прикрепить файл (изображение, видео, аудио):</label>
+                    <input type="file" id="postFile" name="file" accept="image/*,video/*,audio/*">
+                </div>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+
+        <!-- Список постов -->
+        <div id="postsContainer" class="posts-container"></div>
+
+        <!-- Кнопка загрузки еще -->
+        <div class="load-more-container">
+            <button id="loadMoreBtn">Загрузить еще</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

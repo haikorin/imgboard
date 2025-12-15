@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style/index.css" />
+    <title>Leti.ch</title>
+</head>
+<body>
+
+    <div class="TopLine">
+        <nav>
+        <p>Leti.ch! Лучший имиджборд в мире!</p>
+          <button id="nav-theme-toggle">Сменить тему</button>
+        </nav>
+    </div>
+
+    <div class="SupperTopLine">
+    <nav>
+        <button id="nav-imgboard">Главная</button>
+        <button id="nav-upload">Создать пост</button>
+        
+        <!-- Форма авторизации (показывается когда не авторизован) -->
+        <div id="auth-login-container">
+          <div id="auth-container">
+        <form id="login-form">
+                <input name="login" placeholder="Логин" required>
+                <input name="password" type="password" placeholder="Пароль" required>
+          <button type="submit">Войти</button>
+                <button type="button" id="show-register-btn">Зарегистрироваться</button>
+            </form>
+
+            <!-- Форма регистрации (скрыта по умолчанию) -->
+            <form id="register-form" style="display: none;">
+                <input name="reg_login" placeholder="Логин" required>
+                <input name="reg_password" type="password" placeholder="Пароль" required>
+                <input name="reg_nickname" placeholder="Ник" required>
+                <button type="submit">Зарегистрироваться</button>
+                <button type="button" id="show-login-btn">Войти</button>
+        </form>
+        </div>
+
+        <!-- Информация о пользователе (показывается когда авторизован) -->
+        <div id="user-info" style="display: none;">
+            <span id="user-nickname"></span>
+            <button id="logout-btn">Выйти</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+    <section>
+        <aside class="sidebar">
+            <h3>Категории</h3>
+            <ul>
+                <li class="category-item" data-category="all">Всё</li>
+                <li class="category-item" data-category="image">Картинки</li>
+                <li class="category-item" data-category="video">Видео</li>
+                <li class="category-item" data-category="audio">Аудио</li>
+                <li class="category-item" data-category="text">Текст</li>
+                <li class="category-item" data-category="other">Другое</li>
+            </ul>
+
+            <h3>Сортировать по</h3>
+            <ul>
+                <li class="sort-item" data-sort="date">
+                    <span>Дате</span>
+                    <div class="sort-buttons">
+                        <button class="sort-btn" data-sort-direction="desc" title="Новые сначала">↓</button>
+                        <button class="sort-btn" data-sort-direction="asc" title="Старые сначала">↑</button>
+                    </div>
+                </li>
+                <li class="sort-item" data-sort="upvotes">
+                    <span>Апвоутам</span>
+                    <div class="sort-buttons">
+                        <button class="sort-btn" data-sort-direction="desc" title="Больше апвоутов">↓</button>
+                        <button class="sort-btn" data-sort-direction="asc" title="Меньше апвоутов">↑</button>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <main id="posts">
+          <!-- Контент будет загружаться через JS -->
+        </main>
+        <!-- Страница загрузки поста -->
+        <main id="upload-page" class="page-content" style="display: none;">
+          <div class="upload-container">
+            <h2>Создать новый пост</h2>
+            <form id="create-post-form">
+              <div class="form-group">
+                <label for="post-text">Текст поста:</label>
+                <textarea id="post-text" name="text" rows="5" placeholder="Введите текст поста..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="post-file">Файлы (опционально, можно выбрать несколько):</label>
+                <input type="file" id="post-file" name="files" multiple>
+                <small>Можно загрузить любые файлы. Изображения, видео и аудио будут отображаться, остальные - доступны для скачивания. Для создания альбома выберите несколько аудио файлов.</small>
+              </div>
+              
+              <div class="form-group">
+                <button type="submit">Создать пост</button>
+                <button type="button" id="cancel-upload-btn">Отмена</button>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <!-- Страница просмотра поста -->
+        <main id="post-page" class="page-content" style="display: none;">
+          <div class="post-view-container">
+            <button id="back-to-posts-btn" class="back-btn">← Назад к постам</button>
+            <div id="post-view-content">
+              <!-- Контент поста будет загружен через JS -->
+            </div>
+            <div id="comments-section">
+              <h3>Комментарии</h3>
+              <div id="comments-list">
+                <!-- Комментарии будут загружены через JS -->
+                <p class="no-comments">Комментариев пока нет</p>
+              </div>
+              <div id="comment-form-container" style="display: none;">
+                <form id="comment-form">
+                  <textarea id="comment-text" placeholder="Написать комментарий..." rows="3" required></textarea>
+                  <button type="submit">Отправить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+    </section>
+
+    <footer>
+        <p>Все права защищены © 2025 Leti.ch</p>
+    </footer>
+
+    <!-- Подключение скриптов в правильном порядке -->
+    <!-- 1. Конфигурация (должна быть первой) -->
+    <script src="/static/js/env.js"></script>
+    
+    <!-- 2. Утилиты и вспомогательные функции -->
+    <script src="/static/js/auth.js"></script>
+    
+    <!-- 3. Функциональность (зависит от config и auth) -->
+    <script src="/static/js/posts.js"></script>
+
+    <!-- Страница для создания новых постов -->
+    <script src="/static/js/upload.js"></script>
+    
+    <!-- Страница просмотра поста -->
+    <script src="/static/js/post-view.js"></script>
+    
+    <!-- 4. Инициализация UI (зависит от всех модулей) -->
+    <script src="/static/js/theme.js"></script>
+    
+    <!-- 5. Инициализация приложения (последний) -->
+    <script src="/static/js/init.js"></script>
+</body>
+</html>
