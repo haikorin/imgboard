@@ -9,5 +9,4 @@
 - Backend: FastAPI + PostgreSQL в Docker
 - Frontend: HTML/CSS/JS
 - Прокси: Apache2 с SSL
-> cat > README.md << 'EOF'
-# Imageboard Deployment
+
